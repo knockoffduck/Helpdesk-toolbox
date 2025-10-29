@@ -50,18 +50,17 @@ export function CallTemplateForm() {
   function generateSummary() {
     const md = [
       caller && `Caller: ${caller}`,
-      issue && `\n\nIssue: ${issue}`,
+      issue && `\nIssue: ${issue}`,
       troubleshooting &&
-        `\n\nTroubleshooting:\n${troubleshooting
+        `\nActions Taken:\n${troubleshooting
           .split("\n")
           .map((line) => `- ${line}`)
           .join("\n")}`,
-      resolution && `\n\nResolution: ${resolution}`,
-      followUp && `\n\nFollow-up: ${followUp}`,
+      resolution && `\nResolution: ${resolution}`,
+      followUp && `\nFollow-up: ${followUp}`,
     ]
       .filter(Boolean)
       .join("\n");
-    console.log("summary", md);
     setSummary(md.trim());
   }
 
@@ -147,7 +146,9 @@ export function CallTemplateForm() {
           </div>
 
           <div className="flex gap-2 pt-2">
-            <Button onClick={generateSummary}>Generate Summary</Button>
+            <Button className="hover:cursor-pointer" onClick={generateSummary}>
+              Generate Summary
+            </Button>
             <Button variant="secondary" onClick={clearForm}>
               Clear Form
             </Button>
@@ -156,20 +157,19 @@ export function CallTemplateForm() {
       </Card>
 
       {summary && (
-        <Card>
-          <CardHeader>
+        <Card className="bg-zinc-800 border-zinc-700 text-zinc-100">
+          <CardHeader className="flex flex-row justify-between items-center">
             <CardTitle>Generated Markdown Summary</CardTitle>
+            <Button onClick={copyToClipboard}>Copy to Clipboard</Button>
           </CardHeader>
-          <CardContent>
-            <ScrollArea className="max-h-80">
-              <pre className="whitespace-pre-wrap text-sm font-mono bg-muted p-3 rounded-md">
-                {summary}
-              </pre>
-            </ScrollArea>
 
-            <div className="pt-3">
-              <Button onClick={copyToClipboard}>Copy to Clipboard</Button>
-            </div>
+          <CardContent className="flex flex-col space-y-3">
+            {/* Scrollable markdown container */}
+            <pre className="whitespace-pre-wrap text-sm font-mono bg-zinc-900 p-3 text-zinc-100 rounded-md">
+              {summary}
+            </pre>
+
+            {/* Keep buttons outside scrollable area */}
           </CardContent>
         </Card>
       )}
