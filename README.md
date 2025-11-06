@@ -2,7 +2,7 @@
 # 🧩 Helpdesk Toolkit
 
 A lightweight web app that helps **MSP service desk analysts** work more efficiently by providing structured templates for both **phone calls** and **email communication**.
-It helps you write faster, stay consistent, and maintain professional, standardized language in all user interactions.
+It helps you write faster, stay consistent, and maintain professional, standardised language in all user interactions.
 
 Built with **Astro**, **React**, and **Shadcn/UI** for speed, simplicity, and a modern, cohesive feel.
 
@@ -11,10 +11,10 @@ Built with **Astro**, **React**, and **Shadcn/UI** for speed, simplicity, and a 
 ## 🚀 Features
 
 ### 🧾 Email Template Generator
-✅ **Reusable templates** — store and reuse standardized email responses
+✅ **Reusable templates** — store and reuse standardised email responses
 ✅ **Placeholder fields** — dynamic `[FIELD]` tokens replaced with your data
 ✅ **Real-time preview** — updates instantly as you type
-✅ **Template editing** — built-in JSON editor for local customization
+✅ **Template editing** — built-in JSON editor for local customisation
 ✅ **Local storage persistence** — templates are saved in your browser
 ✅ **Reset safety** — two-click confirmation with animation before clearing templates
 
@@ -110,28 +110,21 @@ src/
    ```bash
    git clone https://github.com/knockoffduck/helpdesk-toolbox
    cd helpdesk-toolbox
+   ```
 
+2. Install dependencies:
 
-1.
-Install dependencies:
+   ```bash
+   bun install
+   ```
 
+3. Start the development server:
 
+   ```bash
+   bun run dev
+   ```
 
-bun install
-
-
-
-2.
-Start the development server:
-
-
-
-bun run dev
-
-
-
-3.
-Open in your browser and use the navigation bar to switch between Email Templates and Call Templates.
+4. Open in your browser and use the navigation bar to switch between Email Templates and Call Templates.
 
 
 
@@ -157,22 +150,23 @@ Both the Email Template Generator and Call Template Form store data in your brow
 
 -  Dark/light mode toggle
 
--  Export templates and summaries as .md or .txt
+-  Email redaction tool
 
 -  Template categories for different departments (IT, HR, onboarding)
 
--  Import/export of email templates for team sharing
+- AI-powered call template suggestions
 
+- AI-powered email redaction suggestions
 
 ---
 🙌 About This Project
 
 Built by an MSP service desk analyst to improve daily workflow and promote consistency in documentation and communication.
 
-The Helpdesk Toolkit now centralizes two key workflows:
+The Helpdesk Toolkit now centralises two key workflows:
 
 
-- Call Template Form – structure and summarize technical calls
+- Call Template Form – structure and summarise technical calls
 
 - Email Template App – generate polished, reusable email responses
 
