@@ -1,25 +1,35 @@
 
-# 🧩 MSP Call Template Tool
+# 🧩 Helpdesk Toolkit
 
-A lightweight web app that helps **MSP service desk analysts** document calls quickly and consistently.
-It guides you through a simple call template, saves your notes automatically in the browser,
-and generates a clean **Markdown summary** ready to paste into your ticketing system.
+A lightweight web app that helps **MSP service desk analysts** work more efficiently by providing structured templates for both **phone calls** and **email communication**.
+It helps you write faster, stay consistent, and maintain professional, standardized language in all user interactions.
 
-Built with **Astro**, **React**, and **Shadcn/UI** for speed, simplicity, and a modern feel.
+Built with **Astro**, **React**, and **Shadcn/UI** for speed, simplicity, and a modern, cohesive feel.
 
 ---
 
 ## 🚀 Features
 
-✅ **Structured call template** — keeps each call consistent
-✅ **Markdown summary generator** — ready-to-copy formatted text
-✅ **Automatic save** — persists your work in `localStorage`
+### 🧾 Email Template Generator
+✅ **Reusable templates** — store and reuse standardized email responses
+✅ **Placeholder fields** — dynamic `[FIELD]` tokens replaced with your data
+✅ **Real-time preview** — updates instantly as you type
+✅ **Template editing** — built-in JSON editor for local customization
+✅ **Local storage persistence** — templates are saved in your browser
+✅ **Reset safety** — two-click confirmation with animation before clearing templates
+
+### ☎️ Call Template Form
+✅ **Structured call documentation** — consistent every time
+✅ **Markdown summary generator** — copy easily into tickets
+✅ **Automatic save** — persists in `localStorage`
+✅ **Offline-ready** — runs entirely in your browser
 ✅ **Clear form button** — start fresh anytime
-✅ **Local-first** — works completely offline, perfect for internal or home setups
 
 ---
 
-## 🧱 Template Layout
+## 🧱 Template Layouts
+
+### Call Record Template
 
 Each call record includes:
 
@@ -33,7 +43,6 @@ The generated Markdown looks like this:
 
 ```markdown
 **Caller:** John Doe
-
 **Issue:** Unable to print to network printer.
 
 **Troubleshooting:**
@@ -42,91 +51,136 @@ The generated Markdown looks like this:
 - Restarted print spooler
 
 **Resolution:** Printing now working.
-
 **Follow-up:** Monitor for recurring issue.
 ```
+
+### Email Template Example
+
+Each email template uses `[FIELD]` placeholders, e.g.:
+
+```text
+Hi [USER_NAME],
+
+Please approve access to the [FOLDER_NAME] folder for [REQUESTOR_NAME].
+
+Thank you.
+```
+
+Fields dynamically appear in the form, and updates apply in real time.
 
 ---
 
 🛠️ Tech Stack
 
-- Astro
-
-- React
-
-- Shadcn/UI
-
-- TailwindCSS
-
-- TypeScript
-
+- **Astro** — static site framework
+- **React** — interactive islands (Email / Call tools)
+- **Shadcn/UI** — styled components and popover UI
+- **TailwindCSS** — utility-first styling
+- **TypeScript** — typed components and data consistency
 
 ---
 
 📂 Project Structure
 
-	src/
-	├── components/
-	│   ├── CallTemplateForm.tsx   # Main component
-	├── pages/
-	│   └── index.astro            # Entry page
+src/
+
+├── components/
+
+│   ├── EmailTemplateApp.tsx   # Email template generator
+
+│   ├── CallTemplateForm.tsx   # Call template form
+
+│   ├── Navigation.tsx         # Simple nav between tools
+
+├── data/
+
+│   └── templates.json         # Default email templates
+
+├── pages/
+
+│   └── index.astro            # Entry page (Helpdesk Toolkit)
 
 
 ---
 
 ⚙️ Getting Started
 
-1. Clone the repository
+1. Clone the repository:
 
-	git clone https://github.com/knockoffduck/helpdesk-toolbox
-	cd helpdesk-toolbox
+   ```bash
+   git clone https://github.com/knockoffduck/helpdesk-toolbox
+   cd helpdesk-toolbox
 
-2. Install dependencies
 
-	npm install
+1.
+Install dependencies:
 
-3. Start the development server
 
-	npm run dev
+
+bun install
+
+
+
+2.
+Start the development server:
+
+
+
+bun run dev
+
+
+
+3.
+Open in your browser and use the navigation bar to switch between Email Templates and Call Templates.
+
+
 
 
 ---
-
 💾 Local Data Persistence
 
+Both the Email Template Generator and Call Template Form store data in your browser’s localStorage so progress isn’t lost on refresh.
 
-Your call notes are stored automatically in your browser's localStorage,
 
-so refreshing the page won't delete your progress.
+- Edit or add templates via the Edit Templates modal
 
-To clear all stored data, click the “Clear Form” button.
+- Reset templates using the animated two-click Reset Templates button
+
+- Clear call notes anytime with the Clear Form button
 
 
 ---
-
 🧭 Roadmap / Future Enhancements
 
--  Add Shadcn toast notification when copying the summary
 
--  Support multiple call templates (e.g. password resets, printers, onboarding)
+-  Toast notification when copying to clipboard
 
--  Add a dark mode toggle
+-  Dark/light mode toggle
 
--  Export notes as .txt or .md files
+-  Export templates and summaries as .md or .txt
+
+-  Template categories for different departments (IT, HR, onboarding)
+
+-  Import/export of email templates for team sharing
 
 
 ---
-
 🙌 About This Project
 
+Built by an MSP service desk analyst to improve daily workflow and promote consistency in documentation and communication.
 
-Built by an MSP service desk analyst to improve call documentation workflow.
-
-This tool serves as a personal productivity and learning project focused on:
+The Helpdesk Toolkit now centralizes two key workflows:
 
 
-- Clear, structured data capture
+- Call Template Form – structure and summarize technical calls
 
-- Front-end development with Astro + React
+- Email Template App – generate polished, reusable email responses
 
-- UI consistency with Shadcn
+This project demonstrates:
+
+
+- Clear data-capture workflows
+
+- Front-end best practices with Astro + React
+
+- UI/UX alignment through Shadcn components and Tailwind design tokens
