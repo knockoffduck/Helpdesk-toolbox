@@ -1,26 +1,17 @@
 ---
 import "../styles/global.css";
-// Component Imports
-
-import { CallTemplateForm } from "../components/CallTemplateForm";
+import Navigation from "../components/Navigation";
 ---
 
 <html lang="en" class="dark bg-background text-foreground">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>Helpdesk Toolbox</title>
-
-        <!-- ✅ Favicon references -->
+        <title>Helpdesk Toolkit</title>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/favicon.png" />
     </head>
     <body>
-        <main class="max-w-3xl mx-auto py-10">
-            <h1 class="text-4xl text-center font-bold">
-                Helpdesk Call Template
-            </h1>
-            <CallTemplateForm client:load />
-        </main>
+        <Navigation client:load />
     </body>
 </html>

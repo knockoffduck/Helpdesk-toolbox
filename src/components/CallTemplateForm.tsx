@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 const STORAGE_KEY = "callTemplateForm";
 
@@ -18,7 +17,7 @@ export function CallTemplateForm() {
   const [followUp, setFollowUp] = useState("");
   const [summary, setSummary] = useState("");
 
-  // Load from localStorage on mount
+  // Load from localStorage
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
@@ -29,21 +28,15 @@ export function CallTemplateForm() {
         setTroubleshooting(data.troubleshooting || "");
         setResolution(data.resolution || "");
         setFollowUp(data.followUp || "");
-      } catch (err) {
-        console.warn("Failed to parse saved data:", err);
+      } catch {
+        console.warn("Failed to load saved call template data");
       }
     }
   }, []);
 
-  // Persist changes to localStorage
+  // Save to localStorage
   useEffect(() => {
-    const data = {
-      caller,
-      issue,
-      troubleshooting,
-      resolution,
-      followUp,
-    };
+    const data = { caller, issue, troubleshooting, resolution, followUp };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }, [caller, issue, troubleshooting, resolution, followUp]);
 
@@ -79,76 +72,75 @@ export function CallTemplateForm() {
   }
 
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="max-w-3xl mx-auto mt-8 space-y-6">
+      {/* Form Card */}
       <Card>
         <CardHeader>
           <CardTitle>Call Template</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div>
-            <Label htmlFor="caller" className="mb-2">
-              Caller Name
-            </Label>
+          {/* Caller */}
+          <div className="space-y-1.5">
+            <Label htmlFor="caller">Caller Name</Label>
             <Input
               id="caller"
+              placeholder="e.g. John Doe"
               value={caller}
               onChange={(e) => setCaller(e.target.value)}
-              placeholder="e.g. John Doe"
-            />
-          </div>
-          <div>
-            <Label htmlFor="issue" className="mb-2">
-              Issue Description
-            </Label>
-            <Textarea
-              id="issue"
-              value={issue}
-              onChange={(e) => setIssue(e.target.value)}
-              placeholder="Describe the issue..."
-              rows={3}
-            />
-          </div>
-          <div>
-            <Label htmlFor="troubleshooting" className="mb-2">
-              Troubleshooting Steps
-            </Label>
-            <Textarea
-              id="troubleshooting"
-              value={troubleshooting}
-              onChange={(e) => setTroubleshooting(e.target.value)}
-              placeholder="List what you tried..."
-              rows={4}
-            />
-          </div>
-          <div>
-            <Label htmlFor="resolution" className="mb-2">
-              Resolution
-            </Label>
-            <Textarea
-              id="resolution"
-              value={resolution}
-              onChange={(e) => setResolution(e.target.value)}
-              placeholder="How was the issue resolved?"
-              rows={3}
-            />
-          </div>
-          <div>
-            <Label htmlFor="followUp" className="mb-2">
-              Follow-up Actions
-            </Label>
-            <Textarea
-              id="followUp"
-              value={followUp}
-              onChange={(e) => setFollowUp(e.target.value)}
-              placeholder="Any next steps or reminders..."
-              rows={2}
             />
           </div>
 
+          {/* Issue */}
+          <div className="space-y-1.5">
+            <Label htmlFor="issue">Issue Description</Label>
+            <Textarea
+              id="issue"
+              rows={3}
+              placeholder="Describe the issue..."
+              value={issue}
+              onChange={(e) => setIssue(e.target.value)}
+            />
+          </div>
+
+          {/* Steps */}
+          <div className="space-y-1.5">
+            <Label htmlFor="troubleshooting">Action Steps</Label>
+            <Textarea
+              id="troubleshooting"
+              rows={4}
+              placeholder="List what you tried..."
+              value={troubleshooting}
+              onChange={(e) => setTroubleshooting(e.target.value)}
+            />
+          </div>
+
+          {/* Resolution */}
+          <div className="space-y-1.5">
+            <Label htmlFor="resolution">Resolution</Label>
+            <Textarea
+              id="resolution"
+              rows={3}
+              placeholder="How was the issue resolved?"
+              value={resolution}
+              onChange={(e) => setResolution(e.target.value)}
+            />
+          </div>
+
+          {/* Follow-up */}
+          <div className="space-y-1.5">
+            <Label htmlFor="followUp">Follow‑up Actions</Label>
+            <Textarea
+              id="followUp"
+              rows={2}
+              placeholder="Any next steps or reminders..."
+              value={followUp}
+              onChange={(e) => setFollowUp(e.target.value)}
+            />
+          </div>
+
+          {/* Actions */}
           <div className="flex gap-2 pt-2">
-            <Button className="hover:cursor-pointer" onClick={generateSummary}>
-              Generate Summary
-            </Button>
+            <Button onClick={generateSummary}>Generate Summary</Button>
             <Button variant="secondary" onClick={clearForm}>
               Clear Form
             </Button>
@@ -156,20 +148,17 @@ export function CallTemplateForm() {
         </CardContent>
       </Card>
 
+      {/* Summary Card */}
       {summary && (
-        <Card className="bg-zinc-800 border-zinc-700 text-zinc-100">
-          <CardHeader className="flex flex-row justify-between items-center">
-            <CardTitle>Generated Markdown Summary</CardTitle>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle>Generated Summary</CardTitle>
             <Button onClick={copyToClipboard}>Copy to Clipboard</Button>
           </CardHeader>
-
-          <CardContent className="flex flex-col space-y-3">
-            {/* Scrollable markdown container */}
-            <pre className="whitespace-pre-wrap text-sm font-mono bg-zinc-900 p-3 text-zinc-100 rounded-md">
+          <CardContent>
+            <pre className="whitespace-pre-wrap text-sm font-mono bg-muted p-4 rounded-md text-foreground border border-border">
               {summary}
             </pre>
-
-            {/* Keep buttons outside scrollable area */}
           </CardContent>
         </Card>
       )}

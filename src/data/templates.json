@@ -1,0 +1,27 @@
+[
+  {
+    "id": "folder-access",
+    "name": "Folder Access Request",
+    "body": "Hi [MANAGER_NAME],\n\nPlease approve access to the [FOLDER_NAME] folder for [USER_NAME]. Their username is [USERNAME] and their email address is [USER_EMAIL].\n\nThank you."
+  },
+  {
+    "id": "password-reset",
+    "name": "Password Reset Confirmation",
+    "body": "Hi [USER_NAME],\n\nYour password for the account [USERNAME] has been reset successfully. If you did not request this change or if you experience any issues signing in, please contact the Service Desk. Your registered email address is [USER_EMAIL].\n\nThank you."
+  },
+  {
+    "id": "bitwarden-secure-send",
+    "name": "Bitwarden Secure Send",
+    "body": "Hi [USER_NAME],\n\nI have securely shared the requested credentials using Bitwarden Secure Send. Please check your inbox ([USER_EMAIL]) for a link titled '[SECURE_ITEM_NAME]'. The link will expire after [EXPIRATION_TIME].\n\nThank you."
+  },
+  {
+    "id": "access-approval-request",
+    "name": "Access Approval Request",
+    "body": "Hi [MANAGER_NAME],\n\n[USER_NAME] ([USERNAME], [USER_EMAIL]) requires access to [RESOURCE_NAME] for [REASON]. Please confirm if this request is approved.\n\nThank you."
+  },
+  {
+    "id": "ticket-update",
+    "name": "Ticket Update / Follow-up",
+    "body": "Hi [USER_NAME],\n\nJust a quick update regarding your ticket #[TICKET_NUMBER] for your account [USERNAME] ([USER_EMAIL]): [UPDATE_DETAILS].\n\nLet us know if you need any further assistance."
+  }
+]
