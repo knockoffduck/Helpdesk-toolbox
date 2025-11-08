@@ -13,7 +13,10 @@ const STORAGE_KEY = "subscriptionChangeTool";
 const SUBS_KEY = "subscriptionList";
 
 // Default subscription list
-const DEFAULT_SUBSCRIPTIONS = [
+const DEFAULT_SUBSCRIPTIONS: {
+  name: string;
+  category: "User Subscriptions" | "Device Subscriptions";
+}[] = [
   // Device Subscriptions
   { name: "Threatlocker", category: "Device Subscriptions" },
   { name: "DNS Filter", category: "Device Subscriptions" },
@@ -182,9 +185,24 @@ export default function SubCountAdder() {
     if (!jsonValid) return;
     try {
       const parsed = JSON.parse(rawJson);
-      setAllSubs(parsed);
-      localStorage.setItem(SUBS_KEY, JSON.stringify(parsed));
-      setEditMode(false);
+
+      // Validate structure is array of { name, category }
+      if (
+        Array.isArray(parsed) &&
+        parsed.every(
+          (s) =>
+            typeof s.name === "string" &&
+            typeof s.category === "string" &&
+            (s.category === "User Subscriptions" ||
+              s.category === "Device Subscriptions"),
+        )
+      ) {
+        setAllSubs(parsed); // ✅ immediately updates the checkbox list
+        localStorage.setItem(SUBS_KEY, JSON.stringify(parsed));
+        setEditMode(false);
+      } else {
+        alert("Invalid format. Each entry must have 'name' and 'category'.");
+      }
     } catch {
       setJsonValid(false);
     }
@@ -264,21 +282,21 @@ export default function SubCountAdder() {
                   <div key={category} className="space-y-1">
                     <h4 className="font-medium text-sm mt-2">{category}</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {DEFAULT_SUBSCRIPTIONS.filter(
-                        (s) => s.category === category,
-                      ).map(({ name }) => (
-                        <label
-                          key={name}
-                          className="flex items-center space-x-2 text-sm select-none"
-                        >
-                          <Checkbox
-                            id={name}
-                            checked={selected.includes(name)}
-                            onCheckedChange={() => toggleSubscription(name)}
-                          />
-                          <span>{name}</span>
-                        </label>
-                      ))}
+                      {allSubs
+                        .filter((s) => s.category === category)
+                        .map(({ name }) => (
+                          <label
+                            key={name}
+                            className="flex items-center space-x-2 text-sm select-none"
+                          >
+                            <Checkbox
+                              id={name}
+                              checked={selected.includes(name)}
+                              onCheckedChange={() => toggleSubscription(name)}
+                            />
+                            <span>{name}</span>
+                          </label>
+                        ))}
                     </div>
                   </div>
                 ),
