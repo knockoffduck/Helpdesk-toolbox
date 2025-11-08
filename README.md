@@ -25,6 +25,14 @@ Built with **Astro**, **React**, and **Shadcn/UI** for speed, simplicity, and a 
 ✅ **Offline-ready** — runs entirely in your browser
 ✅ **Clear form button** — start fresh anytime
 
+### 🧾 Subscription Change Tool
+✅ **Categorised subscription selection** — choose from *User* or *Device* subscriptions
+✅ **Before / After tracking** — record count changes efficiently
+✅ **Additional note field** — add optional comments for billing or onboarding notes
+✅ **Generate summary** — outputs a readable summary or Markdown table
+✅ **Edit & Reset controls** — edit subscription lists via JSON and reset safely with confirmation
+✅ **Local storage persistence** — retains session data automatically
+
 ---
 
 ## 🧱 Template Layouts
@@ -68,6 +76,18 @@ Thank you.
 
 Fields dynamically appear in the form, and updates apply in real time.
 
+
+### Subscription Change Example
+
+Example output (plain‑text view):
+
+```text
+Threatlocker was 45 now 50 (Added new client systems)
+
+uSecure was 12 now 15 (New staff onboarding)
+
+Backupify was 8 now 8 (No change)
+```
 ---
 
 🛠️ Tech Stack
@@ -86,20 +106,21 @@ src/
 
 ├── components/
 
-│   ├── EmailTemplateApp.tsx   # Email template generator
+│   ├── EmailTemplateApp.tsx       # Email template generator
 
-│   ├── CallTemplateForm.tsx   # Call template form
+│   ├── CallTemplateForm.tsx       # Call template form
 
-│   ├── Navigation.tsx         # Simple nav between tools
+│   ├── SubscriptionChangeTool.tsx # Subscription documentation tool
+
+│   ├── Navigation.tsx             # Main navigation between tools
 
 ├── data/
 
-│   └── templates.json         # Default email templates
+│   └── templates.json             # Default email templates
 
 ├── pages/
 
-│   └── index.astro            # Entry page (Helpdesk Toolkit)
-
+│   └── index.astro                # Entry page (Helpdesk Toolkit)
 
 ---
 
