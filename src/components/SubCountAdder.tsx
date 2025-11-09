@@ -128,7 +128,10 @@ export default function SubCountAdder() {
   function generateTable() {
     const rows = selected.map((name) => {
       const { before = "", after = "", note = "" } = entries[name] || {};
-      return `${name} was ${before} now ${after} (${note})`;
+      if (note) {
+        return `${name} was ${before} now ${after} (${note})`;
+      }
+      return `${name} was ${before} now ${after}`;
     });
 
     const md = rows.join("\n");
