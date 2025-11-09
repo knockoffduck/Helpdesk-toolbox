@@ -241,7 +241,7 @@ export default function SubCountAdder() {
               onClick={handleResetSubs}
               className={`
                 relative overflow-hidden transition-all duration-300
-                min-w-[11rem]
+                min-w-44
                 ${
                   resetState === "confirm"
                     ? "bg-red-600 text-white hover:bg-red-700"
